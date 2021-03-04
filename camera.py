@@ -49,7 +49,9 @@ class VideoCamera(object):
         success, image = self.video.read()
         image = cv2.flip(image,1)
         ogimage = image
-        image=cv2.resize(image,None,fx=ds_factor,fy=ds_factor,interpolation=cv2.INTER_AREA)
+        
+        #image=cv2.resize(image,None,fx=ds_factor,fy=ds_factor,interpolation=cv2.INTER_AREA)
+        
         gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 
         
