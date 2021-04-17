@@ -11,24 +11,18 @@
     h2{
       color: white;
     }
-    #img2{
-      display: none;
+    #a1{
+      margin-left: 600px;
     }
     </style>
   </head>
   <body bgcolor="black">
     <h2 align="center">Smile Detection Demonstration Using Dlib Library Modules</h2>
     <img id="bg" class="center" src="{{ url_for('video_feed') }}">
+    <a href="{{ url_for('get_image') }}" id="a1">See the Detected Smile</a>
     
-    <div class="container">
-      
-      <div class="box">
-        <span></span>
-        <div class="content">
-          <img id="img2" src="{{ url_for('get_image') }}">
-        </div>
-      </div> 
-      
-    </div>
+    
+    
+    
   </body>
 </html>
