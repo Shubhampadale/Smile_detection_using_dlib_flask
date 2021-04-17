@@ -8,16 +8,38 @@
       margin-right: auto;
     width: 35%
     }
-    h2{
-      color: white;
+    #c2{
+      color: gold;
     }
     #a1{
-      margin-left: 600px;
+      margin-left: 590px;
+      font-weight: 400;
+      line-height: 3;
     }
+    h3{
+      color: white;
+      font-family: inherit;
+      font-weight: 200;
+      line-height: 1.2;
+    }
+    #p1{
+      font-family: inherit;
+      font-weight: 200;
+      line-height: 1.2;
+    }
+    #c1{
+      color: aqua;
+    }
+
     </style>
   </head>
   <body bgcolor="black">
-    <h2 align="center">Smile Detection Demonstration Using Dlib Library Modules</h2>
+    <h2 align="center" id="c2">Smile Detection Demonstration Using Dlib Library Modules</h2>
+    <h3 align = "center"><p id="p1">This application detects smiley face of person posed within the window, in real-time. 
+      It also detects whether the person in the window wear the mask or not. The application also stores the image with smiley face
+      which we can see by just clicking the below provided link. This is developed and implemented using OpenCV, 
+      a real-time Open Source Computer Vision Library.</p></h3>
+    <h3 align="center" id="c1">Detect the smiley face by posing yourself within the below window.</h3>
     <img id="bg" class="center" src="{{ url_for('video_feed') }}">
     <a href="{{ url_for('get_image') }}" id="a1">See the Detected Smile</a>
     
