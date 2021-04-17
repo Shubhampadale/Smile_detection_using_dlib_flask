@@ -27,10 +27,15 @@ def smile(shape):
     mid = (shape[51] + shape[62] +shape[66] +shape[57])/4
     dist = np.abs(np.cross(right-left,left - mid)/np.linalg.norm(right-left))
     return dist
+
+def faceLandmarkPoints(image, faceLandmarks):
+    assert(faceLandmarks.num_parts == 68)
+    cv2.putText(image," No Mask Detected",(60,20),
+                cv2.FONT_HERSHEY_SIMPLEX,0.7,(0,0,255),2)
         
 class VideoCamera(object):
     def __init__(self):
-        self.video = cv2.VideoCapture(-1)
+        self.video = cv2.VideoCapture(0)
     
     def __del__(self):
         self.video.release()
@@ -50,7 +55,7 @@ class VideoCamera(object):
         image = cv2.flip(image,1)
         ogimage = image
         
-        #image=cv2.resize(image,None,fx=ds_factor,fy=ds_factor,interpolation=cv2.INTER_AREA)
+        image=cv2.resize(image,None,fx=ds_factor,fy=ds_factor,interpolation=cv2.INTER_AREA)
         
         gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 
@@ -63,6 +68,7 @@ class VideoCamera(object):
             cv2.putText(image,"Face #{}".format(i+1), (x-20,y-20),
                         cv2.FONT_HERSHEY_SIMPLEX,0.5,(0,255,0),2)
             shape = predictor(gray,rects[i])
+            faceLandmarkPoints(image,shape)
             shape = shape_to_np(shape)
             mouth = shape[mStart:]
             for (x,y) in mouth:
@@ -71,7 +77,7 @@ class VideoCamera(object):
                 cv2.putText(image,"SP: {:.2f}".format(smile_param),(300,30),
                             cv2.FONT_HERSHEY_SIMPLEX,0.7,(0,0,255),2)
                 if(smile_param > smile_const):
-                    cv2.putText(image,"Smile Detected",(30,60),
+                    cv2.putText(image,"Smile Detected",(180,60),
                             cv2.FONT_HERSHEY_SIMPLEX,0.7,(0,0,255),2)
                     #counter += 1
                     ##if counter >=5:
